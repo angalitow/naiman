@@ -5,6 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NIGHTMAN - Moda Urbana</title>
   <style>
+    :root {
+      --altura-barra: 50px;
+      --color-fondo: #0f0f14;
+      --color-barra: #1e1e2a;
+      --color-texto: #ffffff;
+      --velocidad: 10s; /* Ajusta la velocidad (más bajo = más rápido) */
+      --espaciado: 60px; /* espacio entre repeticiones del texto */
+    }
+
+    body {
+      margin: 0;
+      background: var(--color-fondo);
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .barra {
+      width: min(90vw, 800px);
+      height: var(--altura-barra);
+      background: var(--color-barra);
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35) inset, 0 6px 18px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    /* Efecto leve de “brillo” para dar sensación de barra */
+    .barra::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent 40%);
+      pointer-events: none;
+    }
+
+    .pista {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      white-space: nowrap;
+      /* Empezar fuera de la izquierda y terminar fuera de la derecha */
+      animation: avanzar var(--velocidad) linear infinite;
+    }
+
+    .texto {
+      color: var(--color-texto);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      padding: 0 16px;
+      /* Separación entre copias para el bucle */
+      margin-right: var(--espaciado);
+    }
+
+    @keyframes avanzar {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    /* Responsivo: ajustar tamaño de fuente en pantallas pequeñas */
+    @media (max-width: 420px) {
+      .texto { font-size: 1rem; letter-spacing: 0.1em; }
+    }
     /* Hace toda la tipografía cursiva */
 body {
   font-style: italic;
@@ -245,6 +316,16 @@ nav .logo {
     </ul>
   </nav>
 
+  <div class="barra">
+    <div class="pista">
+      <span class="texto">NIGHTMAN</span>
+      <span class="texto">NIGHTMAN</span>
+      <span class="texto">NIGHTMAN</span>
+      <span class="texto">NIGHTMAN</span>
+      <span class="texto">NIGHTMAN</span>
+      <span class="texto">NIGHTMAN</span>
+    </div>
+  </div>
   <!-- Inicio -->
   <section id="inicio">
     <h1>Bienvenido a NIGHTMAN</h1>
