@@ -6,7 +6,6 @@
   <title>NIGHTMAN - Moda Urbana</title>
   <style>
     /* Paleta de grises */
-
     :root {
       --gris-oscuro: #1c1c1c;
       --gris-medio: #3a3a3a;
@@ -142,6 +141,41 @@
       font-size: 0.8rem;
       color: var(--gris-claro);
     }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      background-color: rgba(0,0,0,0.9);
+      padding: 2rem;
+    }
+
+    .modal-content {
+      background-color: var(--gris-oscuro);
+      margin: auto;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 900px;
+      color: var(--blanco);
+    }
+
+    .close {
+      color: var(--blanco);
+      float: right;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: var(--gris-claro);
+    }
   </style>
 </head>
 <body>
@@ -165,34 +199,93 @@
   <section id="productos">
     <h2>Nuestros Productos</h2>
     <div class="productos">
-      <div class="producto">
+      <div class="producto" id="producto1">
         <h3>Camiseta Oversize "HOPE"</h3>
-        <img src="images/Hope (1).png" alt="Camiseta Oversize HOPE" width="150" height="150"><img src="images/Hope (2).png" width="150" height="150">
+        <img src="images/Hope (1).png" alt="Camiseta Oversize HOPE" width="150" height="150" class="img-modal">
+        <img src="images/Hope (2).png" width="150" height="150" class="img-modal">
         <p>Comodidad y estilo en un diseño atemporal.</p>
       </div>
-      <div class="producto">
+      <div class="producto" id="producto2">
         <h3>Camisa Oversize "PASION"</h3>
-        <IMG src="images/ARMA CHRISTI - Unique Abnormal - Stw Mockup.png"
-          alt="Camisa Oversize PASION" width="300" height="300">  
+        <img src="images/ARMA CHRISTI - Unique Abnormal - Stw Mockup.png"
+          alt="Camisa Oversize PASION" width="300" height="300" class="img-modal">  
         <p>Perfecta para un look urbano y relajado.</p>
       </div>
-      <div class="producto">
+      <div class="producto" id="producto3">
         <h3>Camiseta Regular "1912"</h3>
-        <img src="images/1912 f.jpeg" alt="Camiseta Oversize HOPE" width="150" height="150"><img src="images/1912 b.jpeg" width="150" height="150">
+        <img src="images/1912 f.jpeg" alt="Camiseta Regular 1912" width="150" height="150" class="img-modal">
+        <img src="images/1912 b.jpeg" width="150" height="150" class="img-modal">
         <p>Comodidad y estilo en un diseño atemporal.</p>
       </div>
     </div>
   </section>
 
+  <!-- Modals -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <span class="close" data-modal="modal1">&times;</span>
+      <h3>Camiseta Oversize "HOPE"</h3>
+      <img src="images/Hope (1).png" width="300" height="300">
+      <img src="images/Hope (2).png" width="300" height="300">
+      <p>Comodidad y estilo en un diseño atemporal.</p>
+    </div>
+  </div>
+
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <span class="close" data-modal="modal2">&times;</span>
+      <h3>Camisa Oversize "PASION"</h3>
+      <img src="images/ARMA CHRISTI - Unique Abnormal - Stw Mockup.png" width="400" height="400">
+      <p>Perfecta para un look urbano y relajado.</p>
+    </div>
+  </div>
+
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <span class="close" data-modal="modal3">&times;</span>
+      <h3>Camiseta Regular "1912"</h3>
+      <img src="images/1912 f.jpeg" width="300" height="300">
+      <img src="images/1912 b.jpeg" width="300" height="300">
+      <p>Comodidad y estilo en un diseño atemporal.</p>
+    </div>
+  </div>
+
   <!-- Sobre Nosotros -->
   <section id="sobre-nosotros">
     <h2>Sobre Nosotros</h2>
-    <p>NIGHTMAN es una marca de ropa que fusiona la estética urbana con la elegancia de la noche. Nuestro objetivo es ofrecer piezas únicas que reflejen autenticidad y estilo.</p>
-  </section>
+    <p>NIGHTMAN es una marca de ropa que fusiona la estética urbana con un diseño minimalista y sofisticado. Nuestra misión es ofrecer prendas que no solo sean cómodas, sino que también reflejen la esencia de la noche y la ciudad.</p>
+  </section>      
 
   <!-- Footer -->
   <footer>
-    © 2025 NIGHTMAN. Todos los derechos reservados.
+    &copy; 2024 NIGHTMAN. Todos los derechos reservados.
   </footer>
+
+
+
+  <script>
+    // Manejo de modales
+    document.querySelectorAll('.img-modal').forEach((img, index) => {
+      img.addEventListener('click', () => {
+        const modalId = 'modal' + (index < 2 ? 1 : index < 4 ? 2 : 3);
+        document.getElementById(modalId).style.display = 'block';
+      });
+    });
+
+    document.querySelectorAll('.close').forEach(closeBtn => {
+      closeBtn.addEventListener('click', () => {
+        const modalId = closeBtn.getAttribute('data-modal');
+        document.getElementById(modalId).style.display = 'none';
+      });
+    });
+
+    window.addEventListener('click', (event) => {
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    });
+  </script>
 </body>
-</html>
+</html> 
