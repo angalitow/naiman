@@ -5,6 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NIGHTMAN - Moda Urbana</title>
   <style>
+    /* Enlace beige con brillo blanco animado */
+.insta-link {
+  color: #f5e6cc;              /* beige */
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  position: relative;
+
+  /* resplandor blanco animado sobre el texto */
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.6),
+    0 0 16px rgba(255, 255, 255, 0.25);
+
+  animation: softGlow 2.8s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* destello móvil tipo shimmer */
+.insta-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  mix-blend-mode: screen;       /* fusiona el brillo sin tapar el texto */
+  transform: translateX(-150%);
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+.insta-link:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, 0.45),
+    0 0 22px rgba(255, 255, 255, 0.35);
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.9),
+    0 0 26px rgba(255, 255, 255, 0.45);
+}
+
+.insta-link:focus-visible {
+  outline: 2px solid #f5e6cc;
+  outline-offset: 2px;
+}
+
+/* Animaciones */
+@keyframes softGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.6),
+      0 0 16px rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    text-shadow:
+      0 0 10px rgba(255, 255, 255, 0.9),
+      0 0 26px rgba(255, 255, 255, 0.45);
+  }
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-150%); }
+  50%  { transform: translateX(0%); }
+  100% { transform: translateX(150%); }
+}
     :root {
       --altura-barra: 50px;
       --color-fondo: #0f0f14;
@@ -325,6 +396,9 @@ nav .logo {
     <p>Moda urbana con estilo minimalista y sofisticado. Inspirada en la noche, creada para destacar.</p><BR>
     <P>CONTÁCTANOS Y HAZ TU PEDIDO AL WHATSAPP: 3330268194 - 3334516535</P>
   </section>
+<a class="insta-link" href="https://www.instagram.com/nightman.oficial_?igsh=MWZpN3k0cm1peDIxbw==" target="_blank" rel="noopener">
+  HAZ TU PEDIDO AQUÍ
+</a>
 
   <!-- Productos -->
   <section id="productos">
